@@ -3,7 +3,7 @@ import { MailService } from './mail.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/Handlebars.adapter';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/Handleba
             user: config.get<string>('MAILDEV_USER'),
             pass: config.get<string>('MAILDEV_PASS'),
           },
-        },
+        }, 
         defaults: {
           from: `"fitness" <${config.get('MAILER_HOST')}>`,
         },

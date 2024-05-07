@@ -28,7 +28,7 @@ import { CookieGetter } from '../decorators/cookie_getter.decorators';
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  @UseGuards(CreatorGuard)
+  // @UseGuards(CreatorGuard)
   @ApiOperation({ summary: 'Add Admin' })
   @ApiResponse({
     status: 200,
@@ -95,7 +95,7 @@ export class AdminController {
     type: Admin,
   })
   @ApiOperation({ summary: 'All takes Admin' })
-  @UseGuards(CreatorGuard)
+  // @UseGuards(CreatorGuard)
   @Get()
   findAll() {
     return this.adminService.findAllAdmin();
