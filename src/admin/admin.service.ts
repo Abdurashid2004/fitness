@@ -46,14 +46,18 @@ export class AdminService {
   }
 
   async login(loginAdminDto: LoginAdminDto, res: Response) {
+    console.log(222222);
+
     this.logger.log('Calling login()', AdminService.name);
     this.logger.debug('Calling login()', AdminService.name);
     this.logger.verbose('Calling login()', AdminService.name);
     this.logger.warn('Calling login()', AdminService.name);
     try {
       const { login, password } = loginAdminDto;
+      console.log('login', loginAdminDto.login, loginAdminDto.password);
+
       const admin = await this.adminRepo.findOne({ where: { login } });
-      // console.log(admin);
+      console.log(admin);
 
       if (!admin) {
         throw new BadRequestException('Admin not found');
@@ -70,6 +74,8 @@ export class AdminService {
         throw new BadRequestException('Password do not match');
       }
       const tokens = await this.getTokens(admin);
+      console.log(tokens);
+      console.log('salom');
 
       const hashed_refresh_token = await bcrypt.hash(tokens.refresh_token, 7);
       const updateAdmin = await this.adminRepo.update(
